@@ -1,16 +1,5 @@
 #include "myJson.h"
 #include <iostream>
- 
-
-MyJson::MyJson()
-{
-
-}
-
-MyJson::~MyJson()
-{
-    
-}
 
 int MyJson::parse(const char* str)
 {
@@ -45,5 +34,16 @@ int MyJson::test()
  
     // Output {"project":"rapidjson","stars":11}
     std::cout << buffer.GetString() << std::endl;
+    return 0;
+}
+
+int MyJsonTest::test()
+{
+    // MyJson::test();
+    MyJson myJson;
+    myJson.Parse("{\"project\":\"rapidjson_org\",\"stars\":11}");
+    DEBUG("%s", myJson.toString().c_str());
+    myJson.parse("{\"project\":\"rapidjson_new\",\"stars\":22}");
+    DEBUG("%s", myJson.toString().c_str());
     return 0;
 }

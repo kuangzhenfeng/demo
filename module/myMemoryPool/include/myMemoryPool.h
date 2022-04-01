@@ -2,6 +2,15 @@
 #define __MY_MEMORY_POOL_H__
 
 #include <stddef.h>
+#include "common.h"
+
+
+class MyMemoryPoolTest : public ModuleBase
+{
+public:
+    MyMemoryPoolTest() : ModuleBase(MODULE_MEMORY_POOL, "MODULE_MEMORY_POOL"){};
+    int test();
+};
 
 class MyMemoryPool
 {

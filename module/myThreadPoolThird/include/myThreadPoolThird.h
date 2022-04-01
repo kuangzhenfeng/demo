@@ -1,5 +1,5 @@
-#ifndef THREAD_POOL_H
-#define THREAD_POOL_H
+#ifndef __MY_THREAD_POOL_THIRD_H__
+#define __MY_THREAD_POOL_THIRD_H__
 
 #include <vector>
 #include <queue>
@@ -10,6 +10,14 @@
 #include <future>
 #include <functional>
 #include <stdexcept>
+#include "common.h"
+
+class MyThreadPoolThirdTest : public ModuleBase
+{
+public:
+    MyThreadPoolThirdTest() : ModuleBase(MODULE_THREAD_POOL_THIRD, "MODULE_THREAD_POOL_THIRD"){};
+    int test();
+};
 
 class ThreadPool {
 public:

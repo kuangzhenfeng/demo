@@ -1,6 +1,6 @@
 #include "myConditionVariable.h"
 
-int myConditionVariable()
+int MyConditionVariableTest::test()
 {
     return 0;
 }

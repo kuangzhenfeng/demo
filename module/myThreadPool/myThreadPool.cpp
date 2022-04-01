@@ -90,3 +90,37 @@ int MyThreadPool::AddTask(TaskFun taskFun)
     m_taskFunQueue.push(taskFun);
     return 0;
 }
+
+static void myThreadPoolTestTask()
+{
+    static int taskNum = 0;
+    ++taskNum;
+    int num = taskNum;
+    DEBUG("%d task start", num);
+    sleep(1);
+    char *p = (char *)malloc(8);
+    char *pt = p;
+    pt += 6;
+    *pt = 1;
+    printf("*p1=%d\n", *pt);
+    pt += 1;
+    printf("*p2=%d\n", *pt);
+    free(p);
+    DEBUG("%d task end", num);
+}
+
+int MyThreadPoolTest::test()
+{
+    MyThreadPool *pMyThreadPool = MyThreadPool::Instance();
+    pMyThreadPool->Init(3);
+    for(int i = 0; i < 10; ++i)
+    {
+        pMyThreadPool->AddTask(myThreadPoolTestTask);
+    }
+
+    while(1)
+    {
+        sleep(1);
+    }
+    return 0;
+}

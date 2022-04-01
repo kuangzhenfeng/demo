@@ -1,4 +1,5 @@
 // https://github.com/progschj/ThreadPool
+#include "myThreadPoolThird.h"
 #if 0
 #include <iostream>
 #include "threadPool.h"
@@ -33,4 +34,18 @@ int threadPool_test()
     std::cout << result.get() << std::endl;
     return 0;
 }
+
 #endif
+
+int MyThreadPoolThirdTest::test()
+{
+    // create thread pool with 4 worker threads
+    ThreadPool pool(4);
+
+    // enqueue and store future
+    auto result = pool.enqueue([](int answer) { return answer; }, 42);
+
+    // get result from future
+    std::cout << result.get() << std::endl;
+    return 0;    
+}

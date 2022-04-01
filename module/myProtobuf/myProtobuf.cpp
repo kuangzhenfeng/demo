@@ -32,3 +32,9 @@ int MyProtobuf::test()
 
     return 0;
 }
+
+int MyProtobufTest::test()
+{
+    MyProtobuf::test();
+    return 0;
+}

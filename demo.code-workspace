@@ -109,7 +109,8 @@
 			"stack": "cpp",
 			"*.ipp": "cpp",
 			"*.inc": "cpp",
-			"source_location": "cpp"
+			"source_location": "cpp",
+			"mysocket": "c"
 		}
 	}
 }

@@ -5,6 +5,17 @@
 #include <vector>
 #include <mutex>
 #include <pthread.h>
+#include "common.h"
+
+class MyThreadPoolTest : public ModuleBase
+{
+public:
+    MyThreadPoolTest() : ModuleBase(MODULE_THREAD_POOL, "MODULE_THREAD_POOL"){};
+    int test();
+
+private:
+
+};
 
 typedef void(*TaskFun)();
 

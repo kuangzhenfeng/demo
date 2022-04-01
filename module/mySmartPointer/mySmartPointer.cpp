@@ -1,4 +1,4 @@
-#include "smartPointer.h"
+#include "mySmartPointer.h"
 #include <iostream>
 #include <memory>
 #include "commonDebug.h"
@@ -13,21 +13,9 @@ namespace smartPointerTest
     };
 }
 
- 
-
-SmartPointer::SmartPointer()
+int MySmartPointerTest::test()
 {
-
-}
-
-SmartPointer::~SmartPointer()
-{
-    
-}
-
-int SmartPointer::test()
-{
-#if 0
+#if 1
     std::auto_ptr<smartPointerTest::A> a(new smartPointerTest::A);
     DEBUG("a.get()=%p", a.get());
     a.reset();
@@ -40,5 +28,9 @@ int SmartPointer::test()
     DEBUG("b.reset()");
     DEBUG("b.get()=%p", b.get());
 #endif
+    my_smart_pointer::shared_ptr<int> sp(new int(100));
+    my_smart_pointer::shared_ptr<smartPointerTest::A> sp2(new smartPointerTest::A);
+    std::shared_ptr<int> stdSp = std::make_shared<int>();
+    // std::shared_ptr<int> stdSp2 = std::shared_ptr<int>();
     return 0;
 }

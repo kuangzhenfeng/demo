@@ -93,4 +93,22 @@ void MyMemoryPool::deallocate(void *ptr, size_t size)
         return free(ptr);
     }
     size = (size + 8 - 1) & ~(8 - 1 );  // 8倍向上取整 或用size = (size + 8 - 1) - (size + 8 - 1) % 8;
+    // TODO: Fix it
+}
+
+int MyMemoryPoolTest::test()
+{
+    MYLOG(LEVEL_DEBUG, "Skip memory pool test");
+    return 0;
+    MyMemoryPool *pMyMemoryPool = MyMemoryPool::Instance();
+    void *p[200];
+    for(int i = 0; i < 200; ++i)
+    {
+        p[i] = pMyMemoryPool->allocate(64);
+    }
+    for(int i = 0; i < 200; ++i)
+    {
+        pMyMemoryPool->deallocate(p[i], 64);
+    }
+    return 0;
 }

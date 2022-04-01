@@ -1,16 +1,23 @@
 #ifndef __COMMON_TEST_H__
 #define __COMMON_TEST_H__
 
-int neuronTest();
-int threadPoolTest();
-int myMenoryPoolTest();
-int myThreadPoolTest();
-int IOMultiplexingTest();
-int myConditionVariableTest();
-int myJsonTest();
-int smartPointerTest();
-int myProtobufTest();
+#include <map>
+#include <memory>
+#include "common.h"
 
+
+
+class CommonTest
+{
+public:
+    CommonTest();
+    static CommonTest *Instance() { static CommonTest s_obj; return &s_obj;}
+    int test(MODULE_TYPE_E moduleType);
+    int testAll();
+
+private:
+    std::map<MODULE_TYPE_E, std::shared_ptr<ModuleBase>> moduleMap;
+};
 
 
 #endif

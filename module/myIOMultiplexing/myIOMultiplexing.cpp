@@ -1,4 +1,4 @@
-#include "IOMultiplexing.h"
+#include "myIOMultiplexing.h"
 #include <string.h>
 #include <unistd.h>
 #include <sys/select.h>
@@ -79,5 +79,11 @@ int epollTest()
         sleep(1);
     }
 
+    return 0;
+}
+int MyIOMultiplexingTest::test()
+{
+    selectTest();
+    epollTest();
     return 0;
 }

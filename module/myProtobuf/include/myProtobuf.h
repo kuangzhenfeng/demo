@@ -4,24 +4,24 @@
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
+#include "common.h"
+
+class MyProtobufTest : public ModuleBase
+{
+public:
+    MyProtobufTest() : ModuleBase(MODULE_PROTOBUF, "MODULE_PROTOBUF"){};
+    int test();
+};
 
 class MyProtobuf
 {
 public:
-    MyProtobuf();
-    ~MyProtobuf();
-
+    MyProtobuf(){};
     static int test();
 
 private:
 
-
-
-
-
-
 };
-
 
 
 #endif

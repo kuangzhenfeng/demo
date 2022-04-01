@@ -5,6 +5,7 @@ set(CMAKE_BUILD_TYPE Debug)
 #set(CMAKE_BUILD_TYPE Release)
 # set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-fsanitize=address -fno-omit-frame-pointer -std=c++11")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(Threads)
 find_package(Protobuf REQUIRED)
@@ -16,16 +17,19 @@ set(MY_LIB_DIR          ${PROJECT_DIR}/myLib)
 set(THIRD_PART_DIR      ${PROJECT_DIR}/thirdlib)
 
 # module
-set(COMMON_DIR          ${MODULE_DIR}/common)
-set(NEURON_DIR          ${MODULE_DIR}/neuron)
-set(THREAD_POOL_DIR     ${MODULE_DIR}/threadPool)
-set(MY_MEMORY_POOL_DIR  ${MODULE_DIR}/myMemoryPool)
-set(MY_THREAD_POOL_DIR  ${MODULE_DIR}/myThreadPool)
-set(IO_MULTIPLEXING_DIR ${MODULE_DIR}/IOMultiplexing)
-set(MY_CONDITION_VARIABLE_DIR ${MODULE_DIR}/myConditionVariable)
-set(MY_JSON_DIR         ${MODULE_DIR}/myJson)
-set(SMART_POINTER_DIR   ${MODULE_DIR}/smartPointer)
-set(MY_PROTOBUF_DIR     ${MODULE_DIR}/myProtobuf)
+set(COMMON_DIR                  ${MODULE_DIR}/common)
+set(MY_NEURON_DIR               ${MODULE_DIR}/myNeuron)
+set(MY_THREAD_POOL_THIRD_DIR    ${MODULE_DIR}/myThreadPoolThird)
+set(MY_MEMORY_POOL_DIR          ${MODULE_DIR}/myMemoryPool)
+set(MY_THREAD_POOL_DIR          ${MODULE_DIR}/myThreadPool)
+set(MY_IO_MULTIPLEXING_DIR      ${MODULE_DIR}/myIOMultiplexing)
+set(MY_CONDITION_VARIABLE_DIR   ${MODULE_DIR}/myConditionVariable)
+set(MY_JSON_DIR                 ${MODULE_DIR}/myJson)
+set(MY_SMART_POINTER_DIR        ${MODULE_DIR}/mySmartPointer)
+set(MY_PROTOBUF_DIR             ${MODULE_DIR}/myProtobuf)
+set(MY_SOCKET_DIR               ${MODULE_DIR}/mySocket)
+set(MY_IPC_DIR                  ${MODULE_DIR}/myIPC)
+set(MY_REACTOR_DIR              ${MODULE_DIR}/myReactor)
 
 # my lib
 set(LIB_MY_TIMER_DIR    ${MY_LIB_DIR}/timer)
@@ -39,15 +43,18 @@ protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${MY_PROTOBUF_DIR}/pb/myProtobuf.pro
 
 include_directories(
     ${COMMON_DIR}/include
-    ${NEURON_DIR}/include
-    ${THREAD_POOL_DIR}/include
+    ${MY_NEURON_DIR}/include
+    ${MY_THREAD_POOL_THIRD_DIR}/include
     ${MY_MEMORY_POOL_DIR}/include
     ${MY_THREAD_POOL_DIR}/include
-    ${IO_MULTIPLEXING_DIR}/include
+    ${MY_IO_MULTIPLEXING_DIR}/include
     ${MY_CONDITION_VARIABLE_DIR}/include
     ${MY_JSON_DIR}/include
-    ${SMART_POINTER_DIR}/include
+    ${MY_SMART_POINTER_DIR}/include
     ${MY_PROTOBUF_DIR}/include
+    ${MY_SOCKET_DIR}/include
+    ${MY_IPC_DIR}/include
+    ${MY_REACTOR_DIR}/include
 
     # protobuf
     ${CMAKE_CURRENT_BINARY_DIR}
@@ -64,14 +71,18 @@ include_directories(
 set(SOURCE_FILES
     ${MAIN_DIR}/demo.cpp
     ${COMMON_DIR}/commonTest.cpp
-    ${NEURON_DIR}/neuron.cpp
+    ${MY_NEURON_DIR}/myNeuron.cpp
+    ${MY_THREAD_POOL_THIRD_DIR}/myThreadPoolThird.cpp
     ${MY_MEMORY_POOL_DIR}/myMemoryPool.cpp
     ${MY_THREAD_POOL_DIR}/myThreadPool.cpp
-    ${IO_MULTIPLEXING_DIR}/IOMultiplexing.cpp
+    ${MY_IO_MULTIPLEXING_DIR}/myIOMultiplexing.cpp
     ${MY_CONDITION_VARIABLE_DIR}/myConditionVariable.cpp
     ${MY_JSON_DIR}/myJson.cpp
-    ${SMART_POINTER_DIR}/smartPointer.cpp
+    ${MY_SMART_POINTER_DIR}/mySmartPointer.cpp
     ${MY_PROTOBUF_DIR}/myProtobuf.cpp
+    ${MY_SOCKET_DIR}/mySocket.cpp
+    ${MY_IPC_DIR}/myIPC.cpp
+    ${MY_REACTOR_DIR}/myReactor.cpp
 
     # protobuf
     ${PROTO_SRCS}
