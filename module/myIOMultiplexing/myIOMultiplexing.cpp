@@ -3,7 +3,9 @@
 #include <unistd.h>
 #include <sys/select.h>
 #include <sys/socket.h>
+#if __linux__
 #include <sys/epoll.h>
+#endif
 #include "common.h"
 
 int selectTest()
@@ -33,6 +35,7 @@ int selectTest()
 int epollTest()
 {
     DEBUG("OK");
+#if __linux__
     const int MAX_OPEN_FD = 1024;
     int epollFd;
     int eventCount = 0;
@@ -78,7 +81,7 @@ int epollTest()
         
         sleep(1);
     }
-
+#endif
     return 0;
 }
 int MyIOMultiplexingTest::test()

@@ -1,4 +1,5 @@
-﻿#include <stdio.h>
+﻿#if __linux__
+#include <stdio.h>
 #include <stdlib.h> 
 #include "myTimer.h"
 
@@ -110,3 +111,4 @@ int my_timer_delete(timer_t timer_id)
     return 0;
 }
 
+#endif

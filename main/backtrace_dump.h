@@ -30,7 +30,7 @@ static void backtrace_dump()
 #if 1
     printf("Dump map start...\n");
     char buff[64] = {0x00};
-    sprintf(buff,"cat /proc/%d/maps", getpid());
+    snprintf(buff, sizeof(buff), "cat /proc/%d/maps", getpid());
     system((const char*) buff);
     printf("Dump map end...\n");
 #endif

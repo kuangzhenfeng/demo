@@ -1,14 +1,30 @@
 cmake_minimum_required(VERSION 3.1)
 project(demo)
 
+find_program(CCACHE "ccache")
+if(CCACHE)
+    set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE})
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE})
+endif(CCACHE)
+
 set(CMAKE_BUILD_TYPE Debug)
 #set(CMAKE_BUILD_TYPE Release)
 # set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-fsanitize=address -fno-omit-frame-pointer -std=c++11")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# set(CMAKE_C_COMPILER "/usr/bin/gcc")
+# set(CMAKE_CXX_COMPILER "/usr/bin/g++")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON) 
+
 find_package(Threads)
 find_package(Protobuf REQUIRED)
+
+IF(PROTOBUF_FOUND)
+    MESSAGE(STATUS "protobuf library found")
+ELSE()
+    MESSAGE(FATAL_ERROR "protobuf library is needed but cant be found")
+ENDIF()
 
 set(PROJECT_DIR         ${PROJECT_SOURCE_DIR})
 set(MAIN_DIR            ${PROJECT_DIR}/main)
@@ -57,6 +73,7 @@ include_directories(
     ${MY_REACTOR_DIR}/include
 
     # protobuf
+    ${PROTOBUF_INCLUDE_DIRS}
     ${CMAKE_CURRENT_BINARY_DIR}
 
     # my lib
@@ -96,7 +113,11 @@ set(SOURCE_FILES
 # 生成可执行文件
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
-target_link_libraries(${PROJECT_NAME} ${CMAKE_THREAD_LIBS_INIT} ${PROTOBUF_LIBRARIES} -lrt)
+target_link_libraries(${PROJECT_NAME}
+    ${CMAKE_THREAD_LIBS_INIT}
+    ${PROTOBUF_LIBRARIES} 
+    # -lrt
+)
 
 # find_library(boost_lib NAMES boost PATHS ${LIB_BOOST_DIR}/boost)
 # target_link_libraries(${PROJECT_NAME} ${boost_lib})

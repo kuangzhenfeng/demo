@@ -14,7 +14,7 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "gdb",
+            "MIMode": "lldb",
             "setupCommands": [
                 {
                     "description": "为 gdb 启用整齐打印",
@@ -23,7 +23,7 @@
                 }
             ],
             "preLaunchTask": "bulid",
-            "miDebuggerPath": "/usr/bin/gdb"
+            // "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
 }

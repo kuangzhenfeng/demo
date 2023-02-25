@@ -50,10 +50,6 @@ protected:
 #include <list>
 int main()
 {
-    std::list<int> l;
-    l.begin();
-    std::cout << sizeof(l) << std::endl;
-    return 0;
 #if 1
     // int a = 1;
     // char str[] = "abc123";

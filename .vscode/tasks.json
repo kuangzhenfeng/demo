@@ -6,7 +6,7 @@
         {
             "label": "bulid",
             "type": "shell",
-            "command": "cd build; make clean; make -j8"
+            "command": "cd build; cmake ..; make clean; make -j8"
         }
     ]
 }

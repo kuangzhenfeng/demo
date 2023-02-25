@@ -23,7 +23,7 @@ CommonTest::CommonTest()
     moduleMap.insert(std::make_pair(MODULE_NEURON, std::make_shared<MyNeuronTest>()));
     moduleMap.insert(std::make_pair(MODULE_THREAD_POOL_THIRD, std::make_shared<MyThreadPoolThirdTest>()));
     moduleMap.insert(std::make_pair(MODULE_MEMORY_POOL, std::make_shared<MyMemoryPoolTest>()));
-    moduleMap.insert(std::make_pair(MODULE_THREAD_POOL, std::make_shared<MyThreadPoolTest>()));
+    // moduleMap.insert(std::make_pair(MODULE_THREAD_POOL, std::make_shared<MyThreadPoolTest>()));
     moduleMap.insert(std::make_pair(MODULE_IO_MULTIPLEXING, std::make_shared<MyIOMultiplexingTest>()));
     moduleMap.insert(std::make_pair(MODULE_JSON, std::make_shared<MyJsonTest>()));
     moduleMap.insert(std::make_pair(MODULE_SMART_POINTER, std::make_shared<MySmartPointerTest>()));
