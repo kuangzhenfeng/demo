@@ -9,9 +9,9 @@ endif(CCACHE)
 
 set(CMAKE_BUILD_TYPE Debug)
 #set(CMAKE_BUILD_TYPE Release)
-# set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_FLAGS "-fsanitize=address -fno-omit-frame-pointer -std=c++11")
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 20)
+# set(CMAKE_CXX_FLAGS "-std=c++17")
+# set(CMAKE_CXX_FLAGS "-fsanitize=address -fno-omit-frame-pointer")
 
 # set(CMAKE_C_COMPILER "/usr/bin/gcc")
 # set(CMAKE_CXX_COMPILER "/usr/bin/g++")
@@ -46,6 +46,7 @@ set(MY_PROTOBUF_DIR             ${MODULE_DIR}/myProtobuf)
 set(MY_SOCKET_DIR               ${MODULE_DIR}/mySocket)
 set(MY_IPC_DIR                  ${MODULE_DIR}/myIPC)
 set(MY_REACTOR_DIR              ${MODULE_DIR}/myReactor)
+set(MY_STL_DIR                  ${MODULE_DIR}/mySTL)
 
 # my lib
 set(LIB_MY_TIMER_DIR    ${MY_LIB_DIR}/timer)
@@ -71,10 +72,14 @@ include_directories(
     ${MY_SOCKET_DIR}/include
     ${MY_IPC_DIR}/include
     ${MY_REACTOR_DIR}/include
+    ${MY_STL_DIR}/include
 
     # protobuf
     ${PROTOBUF_INCLUDE_DIRS}
     ${CMAKE_CURRENT_BINARY_DIR}
+
+    # boost
+    ${Boost_INCLUDE_DIRS}
 
     # my lib
     ${LIB_MY_TIMER_DIR}/include
@@ -100,6 +105,7 @@ set(SOURCE_FILES
     ${MY_SOCKET_DIR}/mySocket.cpp
     ${MY_IPC_DIR}/myIPC.cpp
     ${MY_REACTOR_DIR}/myReactor.cpp
+    ${MY_STL_DIR}/mySTL.cpp
 
     # protobuf
     ${PROTO_SRCS}
@@ -116,7 +122,9 @@ add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME}
     ${CMAKE_THREAD_LIBS_INIT}
     ${PROTOBUF_LIBRARIES} 
-    # -lrt
+    ${Boost_LIBRARIES}
+    rt
+    crypto
 )
 
 # find_library(boost_lib NAMES boost PATHS ${LIB_BOOST_DIR}/boost)

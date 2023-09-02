@@ -48,8 +48,94 @@ protected:
 #endif
 
 #include <list>
+#include <queue>
+#include <chrono>
+using namespace std::chrono;
+
 int main()
 {
+    using namespace std;
+    vector<string> q;
+{
+    string a = "10";
+    string b = "20";
+    string c = "30";
+    string d = "40";
+    {
+        TimeConsum t;
+        for (int i = 0; i < 29; ++i)
+        {
+            a += a;
+            b += b;
+            c += c;
+            d += d;
+            static int count = 0;
+            cout << "count=" <<  ++count << " size=" << a.size() << endl;
+        }
+    }
+   
+    cout << &a << " " << a[0] << endl;
+    cout << &b << " " << b[0] << endl;
+    cout << &c << " " << c[0] << endl;
+    cout << &d << " " << d[0] << endl;
+    {
+        TimeConsum t;
+        // for (int i = 0; i < 10000 * 1000; ++i)
+        {
+            // string a = "10";
+            q.push_back(a);
+        }
+    }
+    {
+        TimeConsum t;
+        // for (int i = 0; i < 10000 * 1000; ++i)
+        {
+            // string b = "10";
+            q.push_back(std::move(b));
+        }
+    }
+    {
+        TimeConsum t;
+        // for (int i = 0; i < 10000 * 1000; ++i)
+        {
+            // string c = "10";
+            q.emplace_back(c);
+        }
+    }
+    {
+        TimeConsum t;
+        // for (int i = 0; i < 10000 * 1000; ++i)
+        {
+            // string d = "10";
+            q.emplace_back(std::move(d));
+        }
+    }
+    
+    
+    
+    
+    cout << &a << " " << a[0] << endl;
+    cout << &b << " " << b[0] << endl;
+    cout << &c << " " << c[0] << endl;
+    cout << &d << " " << d[0] << endl;
+}
+    cout << &q[0] << " " << q[0][0] << endl;
+    cout << &q[1] << " " << q[1][0] << endl;
+    cout << &q[2] << " " << q[2][0] << endl;
+    cout << &q[3] << " " << q[3][0] << endl;
+    
+    
+
+    mylog::LogManager::Instance()->setDisplayLevel(LEVEL_ALL);
+    // CommonTest::Instance()->test(MODULE_THREAD_POOL_THIRD);
+    // CommonTest::Instance()->test(MODULE_STL);
+    // CommonTest::Instance()->test(MODULE_IPC);
+    CommonTest::Instance()->test(MODULE_SOCKET);
+    // CommonTest::Instance()->test(MODULE_THREAD_POOL);
+    
+    while(1)
+        sleep(1);
+    return 0;
 #if 1
     // int a = 1;
     // char str[] = "abc123";
@@ -80,7 +166,8 @@ int main()
     // CommonTest::Instance()->test(MODULE_THREAD_POOL);
     CommonTest::Instance()->testAll();
 
-    sleep(100);
+    while(1)
+        sleep(100);
     return 0;
 
 }

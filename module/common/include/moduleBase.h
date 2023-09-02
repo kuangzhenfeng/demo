@@ -17,6 +17,7 @@ typedef enum
     MODULE_IPC,                 // 进程间通信
     MODULE_CONDITION_VARIABLE,  // 条件变量
     MODULE_REACTOR,             // Reactor网络模型
+    MODULE_STL,                 // STL
 
     MODULE_MAX
 } MODULE_TYPE_E;

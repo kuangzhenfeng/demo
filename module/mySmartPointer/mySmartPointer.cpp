@@ -15,7 +15,7 @@ namespace smartPointerTest
 
 int MySmartPointerTest::test()
 {
-#if 1
+#if 0
     std::auto_ptr<smartPointerTest::A> a(new smartPointerTest::A);
     DEBUG("a.get()=%p", a.get());
     a.reset();

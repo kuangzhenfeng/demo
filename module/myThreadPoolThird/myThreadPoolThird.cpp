@@ -39,11 +39,14 @@ int threadPool_test()
 
 int MyThreadPoolThirdTest::test()
 {
+    std::cout << "000" << std::endl;
     // create thread pool with 4 worker threads
     ThreadPool pool(4);
+    std::cout << "111" << std::endl;
 
     // enqueue and store future
     auto result = pool.enqueue([](int answer) { return answer; }, 42);
+    std::cout << "222" << std::endl;
 
     // get result from future
     std::cout << result.get() << std::endl;

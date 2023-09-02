@@ -17,6 +17,7 @@
 #include "myIPC.h"
 #include "myConditionVariable.h"
 #include "myReactor.h"
+#include "mySTL.h"
 
 CommonTest::CommonTest()
 {
@@ -31,7 +32,8 @@ CommonTest::CommonTest()
     moduleMap.insert(std::make_pair(MODULE_SOCKET, std::make_shared<MySocketTest>()));
     moduleMap.insert(std::make_pair(MODULE_IPC, std::make_shared<MyIPCTest>()));
     moduleMap.insert(std::make_pair(MODULE_CONDITION_VARIABLE, std::make_shared<MyConditionVariableTest>()));
-    moduleMap.insert(std::make_pair(MODULE_CONDITION_VARIABLE, std::make_shared<MyReactorTest>()));
+    moduleMap.insert(std::make_pair(MODULE_REACTOR, std::make_shared<MyReactorTest>()));
+    moduleMap.insert(std::make_pair(MODULE_STL, std::make_shared<MySTLTest>()));
 }
 
 int CommonTest::test(MODULE_TYPE_E moduleType)
@@ -43,7 +45,7 @@ int CommonTest::test(MODULE_TYPE_E moduleType)
         return -1;
     }
     MYLOG(LEVEL_INFO, "module test, moduleName=%s", itr->second->getName().c_str());
-    std::thread t([&](){ itr->second->test(); });
+    std::thread t([itr](){ itr->second->test(); });
     t.detach();
     return 0;
 }
